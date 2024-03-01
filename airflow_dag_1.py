@@ -19,43 +19,23 @@ from airflow.decorators import dag, task
         #'end_date': datetime(2024,9,30,8)
     },
 )
-
 def taskflow_api_test():
-
     @task()
-
     def remove_special_chars(text: str) -> str:
-
         allowed_chars = set(string.ascii_letters)
-
         non_special_text = ''.join(char for char in text if char in allowed_chars)
-
-
-
         return non_special_text
 
-
-
     @task()
-
     def count_letters(text: str) -> int:
-
         return len(text)
 
-
-
     @task()
-
     def report_result(text: str, length: int) -> str:
-
         return f"The word \"{text}\" has {length} non-special characters in it."
 
-
-
     special_chars_removed = remove_special_chars("!!!Supercalifrag-il+_isticexpialidocious?")
-
     num_letters = count_letters(special_chars_removed)
-
     sentence = report_result(special_chars_removed, report_result)
 
 taskflow_api_test()
