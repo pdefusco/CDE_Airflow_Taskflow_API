@@ -5,7 +5,6 @@ from airflow.decorators import dag, task
 @dag(
     dag_id='taskflow_api',
     is_paused_upon_creation=False,
-    schedule=None,
     start_date=pendulum.datetime(2023, 1, 1, tz="UTC"),
     catchup=False,
     tags=["example"],
