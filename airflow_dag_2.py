@@ -9,7 +9,13 @@ from airflow.decorators import dag, task
     start_date=pendulum.datetime(2023, 1, 1, tz="UTC"),
     catchup=False,
     tags=["example"],
-    max_active_runs=1
+    max_active_runs=1,
+        default_args={
+        'depends_on_past': False,
+        'retry_delay': timedelta(seconds=5),
+        'schedule_interval':'*/5 * * * *',
+        #'end_date': datetime(2024,9,30,8)
+    },
 )
 def tutorial_taskflow_api():
     """
